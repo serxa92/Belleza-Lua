@@ -6,10 +6,9 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Belleza Lúa | Estética y Bienestar",
-  description: "Created with v0",
-  generator: "v0.dev",
+  description: "Belleza Lúa es una página web moderna y elegante diseñada para un centro de estética y belleza. Ofrece una experiencia visual limpia, responsive y centrada en destacar los servicios, tratamientos y filosofía del centro. Visítala aquí 👉 belleza-lua.vercel.app",
   icons: {
-    icon: "/favicon.png",
+    icon: "/images/favicon.png",
   },
 }
 
