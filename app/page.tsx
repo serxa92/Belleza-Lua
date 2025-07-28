@@ -9,9 +9,17 @@ import { useEffect, useState } from "react"
 import { ContactForm } from "@/components/contact-form"
 import { ServiceDetailDialog } from "@/components/service-detail-dialog"
 import { ScrollToTopButton } from "@/components/scroll-to-top-button"
+import { useInView } from "../hooks/use-in-view" // Import the new hook
+import { cn } from "@/lib/utils"
 
 export default function BellezaLuaLanding() {
   const [scrollY, setScrollY] = useState(0)
+
+  const [heroRef, heroInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [statsRef, statsInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [servicesRef, servicesInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [aboutRef, aboutInView] = useInView({ threshold: 0.1, triggerOnce: true })
+  const [contactRef, contactInView] = useInView({ threshold: 0.1, triggerOnce: true })
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -165,22 +173,33 @@ export default function BellezaLuaLanding() {
           className="absolute inset-0 bg-gradient-to-r from-belleza-champagne-100/20 to-transparent"
           style={{ transform: `translateX(${scrollY * 0.1}px)` }}
         />
-        <div className="container mx-auto px-4 relative z-10">
+        <div
+          ref={heroRef}
+          className={cn("container mx-auto px-4 relative z-10", heroInView ? "animate-fade-in-up" : "opacity-0")}
+        >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 animate-fade-in-up">
+            <div className="space-y-8">
+              {" "}
+              {/* Removed animate-fade-in-up */}
               <div className="space-y-4">
-                <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight animate-fade-in-up">
+                <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                  {" "}
+                  {/* Removed animate-fade-in-up */}
                   Tu belleza
                   <span className="block bg-gradient-to-r from-belleza-champagne-700 to-belleza-champagne-800 bg-clip-text text-transparent animate-gradient">
                     natural realzada
                   </span>
                 </h2>
-                <p className="text-xl text-gray-600 leading-relaxed animate-fade-in-up animation-delay-200">
+                <p className="text-xl text-gray-600 leading-relaxed">
+                  {" "}
+                  {/* Removed animation-delay-200 */}
                   En Belleza Lúa transformamos tu belleza con tratamientos personalizados de cosmética y cuidado
                   personal. Descubre el bienestar que mereces en nuestro centro de estética en Vigo.
                 </p>
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-400">
+              <div className="flex flex-col sm:flex-row gap-4">
+                {" "}
+                {/* Removed animation-delay-400 */}
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-belleza-champagne-600 to-belleza-champagne-700 hover:from-belleza-champagne-700 hover:to-belleza-champagne-800 text-white px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
@@ -197,7 +216,9 @@ export default function BellezaLuaLanding() {
                   <Link href="#servicios">Ver Servicios</Link>
                 </Button>
               </div>
-              <div className="flex items-center space-x-6 pt-4 animate-fade-in-up animation-delay-600">
+              <div className="flex items-center space-x-6 pt-4">
+                {" "}
+                {/* Removed animation-delay-600 */}
                 <div className="flex items-center space-x-1">
                   {[...Array(5)].map((_, i) => (
                     <Star
@@ -210,7 +231,9 @@ export default function BellezaLuaLanding() {
                 <p className="text-gray-600">Más de 100 clientes satisfechas</p>
               </div>
             </div>
-            <div className="relative animate-fade-in-right">
+            <div className="relative">
+              {" "}
+              {/* Removed animate-fade-in-right */}
               <div className="relative w-full h-96 lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 group">
                 <Image
                   src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?ixid=M3w3Mjg3ODh8MHwxfHNlYXJjaHwxfHxjdWlkYWRvJTIwZmFjaWFsfGVufDB8fHx8MTc1MzcwMDQxMXww&ixlib=rb-4.1.0"
@@ -241,7 +264,7 @@ export default function BellezaLuaLanding() {
 
       {/* Stats Section */}
       <section className="py-16 bg-white relative">
-        <div className="container mx-auto px-4">
+        <div ref={statsRef} className={cn("container mx-auto px-4", statsInView ? "animate-fade-in-up" : "opacity-0")}>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { icon: Users, number: "100+", label: "Clientes Satisfechas", delay: "0s" },
@@ -250,7 +273,7 @@ export default function BellezaLuaLanding() {
             ].map((stat, index) => (
               <div
                 key={index}
-                className="text-center group hover:scale-105 transition-all duration-300 animate-fade-in-up"
+                className="text-center group hover:scale-105 transition-all duration-300" // Removed animate-fade-in-up
                 style={{ animationDelay: stat.delay }}
               >
                 <div className="w-16 h-16 bg-gradient-to-br from-belleza-champagne-600 to-belleza-champagne-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
@@ -266,8 +289,13 @@ export default function BellezaLuaLanding() {
 
       {/* Services Section */}
       <section id="servicios" className="py-20 bg-gradient-to-br from-gray-50 to-white relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in-up">
+        <div
+          ref={servicesRef}
+          className={cn("container mx-auto px-4", servicesInView ? "animate-fade-in-up" : "opacity-0")}
+        >
+          <div className="text-center mb-16">
+            {" "}
+            {/* Removed animate-fade-in-up */}
             <h3 className="text-4xl font-bold text-gray-900 mb-4">Nuestros Servicios</h3>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Descubre nuestra amplia gama de tratamientos de belleza y bienestar diseñados para realzar tu belleza
@@ -278,7 +306,7 @@ export default function BellezaLuaLanding() {
             {servicesData.map((service, index) => (
               <Card
                 key={index}
-                className="group hover:shadow-2xl transition-all duration-500 border-belleza-champagne-100 hover:border-belleza-champagne-200 hover:scale-105 hover:-translate-y-2 animate-fade-in-up"
+                className="group hover:shadow-2xl transition-all duration-500 border-belleza-champagne-100 hover:border-belleza-champagne-200 hover:scale-105 hover:-translate-y-2" // Removed animate-fade-in-up
                 style={{ animationDelay: service.delay }}
               >
                 <CardContent className="p-6">
@@ -316,9 +344,14 @@ export default function BellezaLuaLanding() {
           className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-belleza-champagne-200/20 to-transparent rounded-full blur-3xl"
           style={{ transform: `translate(${scrollY * 0.05}px, ${scrollY * -0.1}px)` }}
         />
-        <div className="container mx-auto px-4 relative z-10">
+        <div
+          ref={aboutRef}
+          className={cn("container mx-auto px-4 relative z-10", aboutInView ? "animate-fade-in-up" : "opacity-0")}
+        >
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative animate-fade-in-left">
+            <div className="relative">
+              {" "}
+              {/* Removed animate-fade-in-left */}
               <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 group">
                 <Image
                   src="https://www.paxinasgalegas.es/imagenes/lua_img132194t0m0w1424h712.jpg"
@@ -335,7 +368,9 @@ export default function BellezaLuaLanding() {
               </div>
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-gradient-to-br from-belleza-champagne-300/30 to-belleza-champagne-400/20 rounded-full blur-xl animate-pulse" />
             </div>
-            <div className="space-y-6 animate-fade-in-right">
+            <div className="space-y-6">
+              {" "}
+              {/* Removed animate-fade-in-right */}
               <h3 className="text-4xl font-bold text-gray-900">Belleza, cosmética y cuidado personal</h3>
               <p className="text-lg text-gray-600 leading-relaxed">
                 En Belleza Lúa nos especializamos en realzar tu belleza natural a través de tratamientos personalizados
@@ -350,7 +385,7 @@ export default function BellezaLuaLanding() {
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className="flex items-center space-x-3 animate-fade-in-up hover:scale-105 transition-all duration-300"
+                    className="flex items-center space-x-3 hover:scale-105 transition-all duration-300" // Removed animate-fade-in-up
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="w-8 h-8 bg-gradient-to-br from-belleza-champagne-600 to-belleza-champagne-700 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300">
@@ -367,13 +402,20 @@ export default function BellezaLuaLanding() {
 
       {/* Contact Section */}
       <section id="contacto" className="py-20 bg-gradient-to-br from-gray-50 to-white relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16 animate-fade-in-up">
+        <div
+          ref={contactRef}
+          className={cn("container mx-auto px-4", contactInView ? "animate-fade-in-up" : "opacity-0")}
+        >
+          <div className="text-center mb-16">
+            {" "}
+            {/* Removed animate-fade-in-up */}
             <h3 className="text-4xl font-bold text-gray-900 mb-4">Contacta con Nosotros</h3>
             <p className="text-xl text-gray-600">Estamos aquí para ayudarte a lucir y sentirte mejor</p>
           </div>
           <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8 animate-fade-in-left">
+            <div className="space-y-8">
+              {" "}
+              {/* Removed animate-fade-in-left */}
               {[
                 {
                   icon: MapPin,
@@ -409,7 +451,7 @@ export default function BellezaLuaLanding() {
                 </div>
               ))}
             </div>
-            <ContactForm />
+            <ContactForm /> {/* Removed animate-fade-in-right */}
           </div>
         </div>
       </section>
