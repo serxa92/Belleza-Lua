@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Belleza Lúa | Estética y Bienestar",
   description: "En Belleza Lúa transformamos tu belleza con tratamientos personalizados de cosmética y cuidado personal. Descubre el bienestar que mereces en nuestro centro de estética en Vigo.",
   icons: {
-    icon: "/images/favicon.png",
+    icon: "/favicon.png",
   },
 }
 
