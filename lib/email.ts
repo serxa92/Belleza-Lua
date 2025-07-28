@@ -1,3 +1,5 @@
+// Configuración para envío de emails
+// Puedes usar servicios como Resend, SendGrid, Nodemailer, etc.
 
 interface EmailData {
   nombre: string
@@ -7,6 +9,8 @@ interface EmailData {
 }
 
 export async function sendContactEmail(data: EmailData) {
+  // Aquí puedes integrar tu servicio de email preferido
+  // Ejemplo con fetch a un servicio de email:
 
   try {
     // Simular envío de email (reemplaza con tu servicio real)
@@ -21,7 +25,7 @@ export async function sendContactEmail(data: EmailData) {
       Fecha: ${new Date().toLocaleString("es-ES")}
     `
 
-    // Ejemplo con Resend:
+    // Ejemplo con Resend (descomenta y configura si usas Resend):
     /*
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
