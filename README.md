@@ -6,6 +6,13 @@ It is designed for a beauty salon, presenting services, experience, and contact 
 **Live Demo:** [belleza-lua.vercel.app](https://belleza-lua.vercel.app/)
 
 ---
+## 📸 Preview
+
+<div style="display: flex; gap: 10px;">
+  <img src="public/captura1.png" alt="Belleza Lua Screenshot" width="500"/>
+  <img src="public/captura3.png" alt="Belleza Lua Screenshot" width="500"/>
+</div>
+
 
 ## ✨Features
 
@@ -29,6 +36,4 @@ It is designed for a beauty salon, presenting services, experience, and contact 
 
 ---
 
-
-## 📸 Preview
 
